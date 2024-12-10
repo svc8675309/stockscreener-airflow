@@ -50,47 +50,4 @@
 * `Execute for dev` the following command for setting up dev and `running airflow`.
    ```
    
-   -- To set up credentials
   
-   Log into the target environment. for example log into  into https://dev1.dev.clover.com/admin and extracts the internalSession
-   In the terminal execute 
-   $ export internalSession="XXXXX"
-
-   Now 
-   $ make dev
-
-   Note: to modify the credentials at any time simply export internalSession execute $ make data.
-   
-   Looking at the Makefile, notice that the following targets were executed: clean venv airflow-install dev-env dev-tests dev-run
-   ```
-* `Execute for prod` the following command for setting up and `running airflow` which will look like it does in production.
-   ```
-   $ make prod
-   
-   Looking at the Makefile, notice that the following targets were executed: clean venv airflow-install env dist install run
-   ```
-* `If you want formatting` 
-  ```
-  $ source venv/bin/activate
-  $ pip install black
-  ```
-  Under vscode settings search for "python format black" and make sure "Black Path" is set to 
-  "${workspaceFolder}/venv/bin/black". Also make sure "Black Args" has "--line-length 120" and that the python formatting provider is black. 
-  Then one can click on a file and select "format document"
-
-# **BEFORE YOU COMMIT**
-```
-$ make test
-```
-The following executes lint which should be done prior to a commit.
-
-
-
-### Code formatting
-In python, code formatters, like everyting else is installed va pip. 
-Ideally you would select the venv that was created for this env by calling `make dev-env`
-In the lower right hand corner of VSCODE ( in the blue ) you will see the python interpreter.
-Point that to your local-to-this-directory venv
-From the command line source this env `$ source `pwd`/venv/bin/activate`. To manually do it use: 
-`pip install black`
-`python -m black --line-length=120 <fully qualified file>`
