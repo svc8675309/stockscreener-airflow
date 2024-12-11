@@ -1,47 +1,48 @@
-# stockscreener-airflow
+# Stockscreener-airflow
 
 ```check out branch - v1.0-get-my-stocks``` 
 
-This project shows how to install apache airflow and run a simple task to get stocks using yahoo-fin.
+This project installs apache airflow and run a simple DAG to get stocks using yahoo-fin.
 
-It's the bases for a larger project that takes this stock data and expands on it which has not been yet written.
+It's the bases for a larger project that takes this stock data and expands on it which has not been yet written :-)
 
-This has been written for a Mac.
+I use a Mac which some instructions below pertain too. 
 
 # Setup
 
 ## Install Python
 
+### Ensure that Python 3.11 is installed 
+
+* I use brew which installed symbolic link to 3.11 on my box at /usr/local/bin/python3.11
+  ```
+  ls -la /usr/local/bin/python3.11
+
+  lrwxr-xr-x  1 XXX  XXX  44 Dec 11 03:51 /usr/local/bin/python3.11 -> ../Cellar/python@3.11/3.11.11/bin/python3.11
+  ```
+  *  If 3.11  not installed `brew install python@3.11`
+  *  If you don't want to use 3.11 then change this value in file Makefile to what you want ( I tested with 3.11 ).
+    ```
+    export PYTHON_VERSION=3.11
+    ``` 
+
 ### Install virtualenv dependency
-We will run airflow in its own `virtual environment` that we create here locally to control dependencies.  
-* First ensure that your python has virtualenv installed.
+A local copy of python is placed in ./`venv` directory. 
+The code runs airflow in its own `virtual environment` to control dependencies.  
+* Verify virtualenv is installed.
     ```
     $ virtualenv --version
     virtualenv X.X.X  ( if this does not display then run )
     $ pip install virtualenv ( or if not available ) pip3 install virtualenv
 
-    ( We want virtualenv available in your default python installation )
+    ( This makes virtualenv available to your default python installation )
     ```
-
-### Ensure that Python 3.11 is installed 
-
-A local copy of python is placed in ./`venv` directory. We will be using python 3.11.
-* I use brew which installed symbolic link to it on my box at /usr/local/bin/python3.11
-  ```
-  ls -la /usr/local/bin/python3.11
-
-  lrwxr-xr-x  1 scott  admin  44 Dec 11 03:51 /usr/local/bin/python3.11 -> ../Cellar/python@3.11/3.11.11/bin/python3.11
-  ``` 
-
-*  Note: If you don't want to use 3.11 then change this value in this Makefile
-    ```
-    export PYTHON_VERSION=3.11
-    ``` 
 
 * To get it all running execute
   ```
   make all
-  ``` 
+  ```
+  * Each step in the Makefile may be run seperately [ clean venv install requirements run ]. 
 
 * Once sucessful you should see airflow start up in the terminal ( after this only execute $`make run` to start it up again).
   ```
