@@ -1,6 +1,6 @@
 # stockscreener-airflow
 
-( This is a work in progress - Expected changes.)
+```check out branch - v1.0-get-my-stocks``` 
 
 This project shows how to install apache airflow and run a simple task to get stocks using yahoo-fin.
 
