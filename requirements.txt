@@ -1,2 +1,2 @@
 black==24.4.2
-shortuuid==1.0.13
+yahoo-fin==0.8.9.1

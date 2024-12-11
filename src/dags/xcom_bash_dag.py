@@ -2,8 +2,7 @@ from airflow import DAG
 from airflow.operators.python import PythonOperator
 from datetime import datetime
 from airflow.models import TaskInstance
-from common.custom_bash_operator import CustomBashOperator
-import shortuuid
+from svc.common.custom_bash_operator import CustomBashOperator
 
 def print_xcom(**kwargs):
     ti: TaskInstance = kwargs['ti']

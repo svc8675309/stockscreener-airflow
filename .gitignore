@@ -1,3 +1,6 @@
+# Data
+*/ticker/
+
 # Airflow
 */airflow-webserver.pid
 *.db
