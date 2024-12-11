@@ -38,6 +38,7 @@ The code runs airflow in its own `virtual environment` to control dependencies.
     ( This makes virtualenv available to your default python installation )
     ```
 
+## Run it
 * To get it all running execute
   ```
   make all
