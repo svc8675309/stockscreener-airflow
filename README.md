@@ -55,6 +55,7 @@ A local copy of python is placed in ./`venv` directory. We will be using python 
 * Execute DAG `stock_analysis`
 * See directory `.\data\ticker` Fill with all my favorite stock quotes
 * This list was provided by `.\data\exchanges\my_picks.csv`
+* Currently airflow is pointed to the src dir, so any python you want to experiment with put under there.
 
  
 
