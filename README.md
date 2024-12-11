@@ -1,53 +1,60 @@
-# **billing-ops-airflow**
+# stockscreener-airflow
 
-```
-# **Quick Setup**
-* Make sure `billing-airflow` project is clonned in the parent directory while developing this project locally. An editable version of `billing-airflow` is installed by Makefile step dev_requirement and the following error message is displayed if its not available while executing `make dev`.
-  ```
-  Makefile:43: *** billing-airflow does not exist in parent folder!. Stop.
-  ```
-* `Install virtualenv dependency`. We will run airflow in its own `virtual environment` that we create here locally to control dependencies. It's much like npm_modules for web development. First ensure that your python has virtualenv installed.
-  ```
-  $ virtualenv --version
-  virtualenv X.X.X  ( if this does not display then run )
-  $ pip install virtualenv ( or if not available ) $pip3 install virtualenv
-  ```
-* `Create a new virtual environment`, a local copy of python is placed in `venv` directory. We will be using python 3.11 [https://airflow.apache.org/docs/apache-airflow/stable/installation/installing-from-pypi.html]
-  ```
-  $ virtualenv venv -p 3.11
-  If you see an error >> RuntimeError: failed to find interpreter for Builtin discover of python_spec='3.11 then this is a possibility
-          I use homebrew ( you don't have too, miniconda is great ) if you wan to to then follow along.
-          Note: This takes a while... it installs a bunch of python versions ( ls /usr/local/opt/python* shows them all) <-- don't freak, you path is not modified. See [https://cloud.google.com/composer/docs/concepts/versioning/composer-versions
+( This is a work in progress - Expected changes.)
 
-	        virtualenv venv -p 3.11
-         
-               $ brew install python@3.11
-          Modify our .zshrc or .bash_profile and add
-               export PATH="/usr/local/opt/python3/bin:$PATH"
-          Homebrew will symlink to python3 and the alias used this instead of the default 2.x installed by the OS
-               $ brew list | grep python
-                  ...
-                   python@3.11
-                  ...
-      
-          # All we are doing here is updating symbolic links to python3 / pip3 ... I did unlink just be be sure, but not required.
-               $ brew unlink python@3.9
-               $ brew unlink python@3.7
-               $ brew link --force python@3.11
-          
-          $ virtualenv venv -p 3.11
+This project shows how to install apache airflow and run a simple task to get stocks using yahoo-fin.
 
-          Notice that a directory was created named venv and contained within is a python installation.
-          Source it.... Meaning for the remainder of the time we use this project we want to use the python version that we created for it.
-       
-          $ source venv/bin/activate
-          $ python --version
-            Python 3.11.xx  
+It's the bases for a larger project that takes this stock data and expands on it which has not been yet written.
 
-   Notice that your command prompt changes to (venv) ... $   <  this tells you that you are using this local python environment.
-          Source this every time. The reason why is this creates an environment exactly like our target in airflow.
+This has been written for a Mac.
+
+# Setup
+
+## Install Python
+
+### Install virtualenv dependency
+We will run airflow in its own `virtual environment` that we create here locally to control dependencies.  
+* First ensure that your python has virtualenv installed.
+    ```
+    $ virtualenv --version
+    virtualenv X.X.X  ( if this does not display then run )
+    $ pip install virtualenv ( or if not available ) pip3 install virtualenv
+
+    ( We want virtualenv available in your default python installation )
+    ```
+
+### Ensure that Python 3.11 is installed 
+
+A local copy of python is placed in ./`venv` directory. We will be using python 3.11.
+* I use brew which installed symbolic link to it on my box at /usr/local/bin/python3.11
   ```
-* `Execute for dev` the following command for setting up dev and `running airflow`.
-   ```
-   
-  
+  ls -la /usr/local/bin/python3.11
+
+  lrwxr-xr-x  1 scott  admin  44 Dec 11 03:51 /usr/local/bin/python3.11 -> ../Cellar/python@3.11/3.11.11/bin/python3.11
+  ``` 
+
+*  Note: If you don't want to use 3.11 then change this value in this Makefile
+    ```
+    export PYTHON_VERSION=3.11
+    ``` 
+
+* To get it all running execute
+  ```
+  make all
+  ``` 
+
+* Once sucessful you should see airflow start up in the terminal ( after this only execute $`make run` to start it up again).
+  ```
+  | ____    |__( )_________  __/__  /________      __
+  | ____  /| |_  /__  ___/_  /_ __  /_  __ \_ | /| / /
+  | ___  ___ |  / _  /   _  __/ _  / / /_/ /_ |/ |/ /
+  | _/_/  |_/_/  /_/    /_/    /_/  \____/____/|__/
+  ```
+* http://0.0.0.0:8080 admin/( the password is in a generated file in this dir named `standalone_admin_password.txt`)  
+
+* Execute DAG `stock_analysis`
+* See directory `.\data\ticker` Fill with all my favorite stock quotes
+* This list was provided by `.\data\exchanges\my_picks.csv`
+
+ 
+
